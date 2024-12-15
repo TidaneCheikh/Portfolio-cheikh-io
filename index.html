@@ -96,7 +96,7 @@ Copyright <script>document.write(new Date().getFullYear());</script> All rights 
 			<section id="colorlib-hero" class="js-fullheight" data-section="home">
 				<div class="flexslider js-fullheight">
 					<ul class="slides">
-				   	<li style="background-image: url(images/cheikh.jpg);">
+				   	<li style="background-image: url(images/image7.jpeg);">
 				   		<div class="overlay"></div>
 				   		<div class="container-fluid">
 				   			<div class="row">
@@ -226,17 +226,7 @@ Copyright <script>document.write(new Date().getFullYear());</script> All rights 
 						
 					
 					
-						<div class="col-md-4 text-center animate-box">
-							<div class="services color-4">
-								<span class="icon">
-									<i class="icon-layers2"></i>
-								</span>
-								<div class="desc">
-									<h3>Sites Web </h3>
-									<p>Conception de sites web Vitrines avec Wordpress </p>
-								</div>
-							</div>
-						</div>
+						
 						
 						<div class="col-md-4 text-center animate-box">
 							<div class="services color-5">
@@ -290,6 +280,17 @@ Copyright <script>document.write(new Date().getFullYear());</script> All rights 
 								<div class="desc">
 									<h3>Power automate </h3>
 									<p>Création des flux de travail automatisés pour automatiser des processus métier</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4 text-center animate-box">
+							<div class="services color-4">
+								<span class="icon">
+									<i class="icon-layers2"></i>
+								</span>
+								<div class="desc">
+									<h3>Sites Web </h3>
+									<p>Conception de sites web Vitrines avec Wordpress </p>
 								</div>
 							</div>
 						</div>
@@ -1055,23 +1056,22 @@ Copyright <script>document.write(new Date().getFullYear());</script> All rights 
 										data-animate-effect="fadeInRight">
 										<form action="">
 											<div class="form-group">
-												<input type="text" class="form-control" placeholder="Name">
+												<input type="text" id="name" class="form-control" placeholder="Name">
 											</div>
 											<div class="form-group">
-												<input type="text" class="form-control" placeholder="Email">
+												<input type="text" id="email" class="form-control" placeholder="Email">
 											</div>
 											<div class="form-group">
-												<input type="text" class="form-control" placeholder="Subject">
+												<input type="text" id="subject" class="form-control" placeholder="Subject">
 											</div>
 											<div class="form-group">
-												<textarea name="" id="message" cols="30" rows="7" class="form-control"
-													placeholder="Message"></textarea>
+												<textarea id="message" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
 											</div>
 											<div class="form-group">
-												<input type="submit" onclick="sendEmail()"
-													class="btn btn-primary btn-send-message" value="Send Message">
+												<input type="button" onclick="sendEmail()" class="btn btn-primary btn-send-message" value="Send Message">
 											</div>
 										</form>
+										
 									</div>
 
 								</div>
@@ -1088,6 +1088,41 @@ Copyright <script>document.write(new Date().getFullYear());</script> All rights 
 
 	<!-- jQuery -->
 	<script src="js/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+	
+
+<script>
+    (function() {
+        emailjs.init("5lyXSdJ05KUP1Xp1P"); // Remplace TON_USER_ID par ton ID EmailJS
+    })();
+</script>
+
+	<script>
+		function sendEmail() {
+			// Collecter les données du formulaire
+			const params = {
+				from_name: document.getElementById("name").value,
+				email: document.getElementById("email").value,
+				message: document.getElementById("message").value,
+			};
+		
+			// Identifiants EmailJS
+			const serviceID = "service_yp1n8p8"; // Remplace par ton Service ID
+			const templateID = "template_ng22ifr"; // Remplace par ton Template ID
+		
+			// Envoyer l'email via EmailJS
+			emailjs.send(serviceID, templateID, params)
+				.then((res) => {
+					alert("Email envoyé avec succès !");
+				})
+				.catch((err) => {
+					console.error("Erreur : ", err);
+					alert("Échec de l'envoi de l'email.");
+				});
+		}
+		</script>
+		
 
 	<!-- jQuery Easing -->
 	<script src="js/jquery.easing.1.3.js"></script>
